@@ -3,7 +3,11 @@ package com.hibernate.library.dao.impl;
 import java.util.List;
 
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,7 +97,14 @@ public class LibraryDaoImpl implements LibraryDao {
 		if (StringUtils.isEmpty(session) || !session.isOpen()) {
 			session = getSession();
 		}
-		return session.createCriteria(Library.class).list();
+		 Criteria c = session.createCriteria(Library.class);  
+//		 c.setFirstResult(4);  // it hides first 4 columns data using this query 
+//		 c.setMaxResults(6);
+		 c.add(Restrictions.gt("bookName","hh"));//bookName is the propertyname  //it gives grater than data from this word "hh"
+		// c.addOrder(Order.asc("bookName"));  // it prints data in ascending order for bookName column only 
+		 List list=c.list();
+		return list;
+		 //return session.createCriteria(Library.class).list();
 //		return (List<Library>) session.createCriteria(Library.class).list();
 	}
 
