@@ -20,7 +20,7 @@ public class LibraryConfig {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		dataSource.setUrl(
-				"jdbc:mysql://localhost:3306/library"); /* 10.2.0.207:3306 */
+				"jdbc:mysql://10.240.0.63:3306/library"); /* 10.2.0.207:3306 */ //10.240.0.63//
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;
